@@ -46,4 +46,8 @@ long	ft_atol(char *str);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_print_error(char *str);
 
+// init_func;
+int		init_table(t_table	*table, char **av);
+int		init_mutex(t_table *table);
+
 # endif

@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:01:12 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/09 15:14:03 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:12:10 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	parsing_arg(int ac, char **av)
 	i = 0;
 	while (i < ac)
 	{
-		printf("----> %ld  \n", ft_atol(av[i]));
-		printf("int max------> %d \n", INT_MAX);
 		if (ft_atol(av[i]) > INT_MAX)
 			ft_print_error("Error: argument exceeds maximum int value!\n");
 		i++;
