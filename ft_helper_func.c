@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_helper_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 15:02:39 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/14 23:31:54 by rel-kass         ###   ########.fr       */
+/*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
+/*   Updated: 2025/07/14 23:55:26 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-
-int main(int ac, char **av)
+long	get_time()
 {
-    t_table *table;
+	struct timeval	tv;
 
-    parsing_arg(ac, av);
-    if (!init_table(table, av))
-        return (1);
-    return (0);
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	ft_locked_print(t_philo *philo, char *msg)
+{
+	pthread_mutex_lock(&philo->table->print_lock);
+	printf("%ld %d %s\n", (get_time() - philo->table->start_time), philo->id, msg);
+	pthread_mutex_unlock(&philo->table->print_lock);	
 }
