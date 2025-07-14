@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/14 23:50:21 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/15 00:22:26 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		init_philo(t_table *table)
 
 int		init_mutex(t_table	*table)
 {
-	if (pthread_mutex_init(&table->print_lock, NULL)
+	if (pthread_mutex_init(&table->meal_lock, NULL)
 		|| pthread_mutex_init(&table->print_lock, NULL))
 	{
 			printf("Error: Failed to initialize mutex\n");

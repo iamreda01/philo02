@@ -57,6 +57,7 @@ int		init_philo(t_table *table);
 // helper_func;
 void	ft_locked_print(t_philo *philo, char *msg);
 long	get_time();
+void	ft_usleep(long sleep_time);
 
 // thread_management;
 int		create_philo(t_table *table);
