@@ -62,5 +62,9 @@ void	ft_usleep(long sleep_time);
 // thread_management;
 int		create_philo(t_table *table);
 void	*philo_routine(void *arg);
+int		is_dead(t_table *table);
+
+// monitor;
+
 
 # endif

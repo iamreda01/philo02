@@ -3,7 +3,7 @@ CFLAGS = -fsanitize=thread -g   #-fsanitize=address -g #-Wall -Wextra -Werror
 PTFLAG = -pthread
 
 NAME = philo
-SRC = philo.c parsing_utils.c parsing.c ft_init.c ft_helper_func.c philo_routine.c
+SRC = philo.c parsing_utils.c parsing.c ft_init.c ft_helper_func.c philo_routine.c monitor.c
 
 OBJ = $(SRC:.c=.o)
 

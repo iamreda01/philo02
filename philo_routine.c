@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 21:59:28 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/15 00:23:28 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/15 02:34:21 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	*philo_routine(void *arg)
 		
 		pthread_mutex_lock(&philo->table->meal_lock);
 		philo->last_meal = get_time();
-		ft_locked_print(philo, "is eating");
 		pthread_mutex_unlock(&philo->table->meal_lock);
+		ft_locked_print(philo, "is eating");
 		ft_usleep(philo->table->time_to_eat);
 
 		pthread_mutex_unlock(philo->left_fork);
@@ -62,5 +62,7 @@ int		create_philo(t_table *table)
 		pthread_detach(tid[i]);
 		i++;
 	}
+	if (is_dead(table))
+		return (0);
 	return (1);
 }
