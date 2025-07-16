@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 21:59:28 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/16 18:21:54 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/17 00:33:10 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void	*philo_routine(void *arg)
 		ft_usleep(100);
 	while (1)
 	{
+		pthread_mutex_lock(&philo->table->meal_lock);
+		if (philo->meals_counter == philo->table->limit_meals)
+			return (pthread_mutex_unlock(&philo->table->meal_lock), NULL);
+		pthread_mutex_unlock(&philo->table->meal_lock);
+		//-----------------------------------------------------------------------//
 		pthread_mutex_lock(philo->left_fork);
 		ft_locked_print(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
 		ft_locked_print(philo, "has taken a fork");
-		
+		//-----------------------------------------------------------------------//
 		pthread_mutex_lock(&philo->table->meal_lock);
 		pthread_mutex_lock(&philo->table->counter_lock);
 		philo->last_meal = get_time();
@@ -35,7 +40,8 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&philo->table->counter_lock);
 		ft_locked_print(philo, "is eating");
 		ft_usleep(philo->table->time_to_eat);
-
+		//-----------------------------------------------------------------------//
+		
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 

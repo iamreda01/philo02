@@ -6,20 +6,11 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 01:34:55 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/16 18:35:07 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/17 00:28:38 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// int		is_meal_limit_reached(t_table *table, int philo_index)
-// {
-// 	pthread_mutex_lock(&table->counter_lock);
-// 	if (table->limit_meals <= table->philo[philo_index].meals_counter)
-// 		return (1);
-// 	pthread_mutex_unlock(&table->counter_lock);
-// 	return (0);
-// }
 
 int		check_meals(t_table *table)
 {
