@@ -36,6 +36,7 @@ typedef struct	s_table
 	mutex_t		*forks;
 	mutex_t		print_lock;
 	mutex_t		meal_lock;
+	mutex_t		counter_lock;
 	t_philo		*philo;
 }	t_table;
 

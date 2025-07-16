@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 21:59:28 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/15 02:34:21 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:51:18 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@ void	*philo_routine(void *arg)
 		ft_usleep(100);
 	while (1)
 	{
-		
 		pthread_mutex_lock(philo->left_fork);
 		ft_locked_print(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
 		ft_locked_print(philo, "has taken a fork");
 		
 		pthread_mutex_lock(&philo->table->meal_lock);
+		pthread_mutex_lock(&philo->table->counter_lock);
 		philo->last_meal = get_time();
+		philo->meals_counter += 1;
+		printf("philo %d kla ---------> %ld\n", philo->id, philo->meals_counter);
 		pthread_mutex_unlock(&philo->table->meal_lock);
+		pthread_mutex_unlock(&philo->table->counter_lock);
 		ft_locked_print(philo, "is eating");
 		ft_usleep(philo->table->time_to_eat);
 
@@ -49,7 +52,6 @@ int		create_philo(t_table *table)
 	pthread_t	tid[table->philo_nbr];
 
 	i = 0;
-	table->start_time = get_time();
 	while (i < table->philo_nbr)
 	{
 		
