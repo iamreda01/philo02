@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/16 17:47:06 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:35:50 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		init_philo(t_table *table)
 		table->philo[i].left_fork = &table->forks[i];
 		table->philo[i].right_fork = &table->forks[(i + 1) % table->philo_nbr];
 		table->philo[i].last_meal = table->start_time;
-		table->philo[i].meals_counter = 0;
 		table->philo[i].meals_counter = 0;
 		table->philo[i].table = table;
 		i++;
@@ -53,7 +52,7 @@ int		init_forks(t_table *table)
 	int		i;
 
 	i = 0;
-	table->forks = malloc(sizeof(table->forks) * table->philo_nbr);
+	table->forks = malloc(sizeof(mutex_t) * table->philo_nbr);
 	if (!table->forks)
 		return (0);
 	while (i < table->philo_nbr)
@@ -70,9 +69,9 @@ int		init_forks(t_table *table)
 
 int		init_table(t_table	*table, char **av)
 {
-	table = malloc(sizeof(t_table));
-	if (!table)
-		return (0);
+	// table = malloc(sizeof(t_table));
+	// if (!table)
+	// 	return (0);
 	table->philo_nbr = ft_atol(av[1]);
 	table->time_to_die = ft_atol(av[2]);
 	table->time_to_eat = ft_atol(av[3]);

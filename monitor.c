@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 01:34:55 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/17 00:28:38 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:30:21 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		is_dead(t_table *table)
 			return (1);
 		while (i < table->philo_nbr)
 		{
+			// if (table->philo[i].left_fork == table->philo[i].right_fork)
+			// 	ft_usleep(table->time_to_die);
 			pthread_mutex_lock(&table->meal_lock);
 			if ((get_time() - table->philo[i].last_meal) > table->time_to_die)
 			{
