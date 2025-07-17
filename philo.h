@@ -59,13 +59,15 @@ int		init_philo(t_table *table);
 void	ft_locked_print(t_philo *philo, char *msg);
 long	get_time();
 void	ft_usleep(long sleep_time);
+void	ft_free(t_table *table);
 
 // thread_management;
 int		create_philo(t_table *table);
 void	*philo_routine(void *arg);
-int		is_dead(t_table *table);
 
 // monitor;
+int		is_dead(t_table *table);
+int		check_meals(t_table *table);
 
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/16 17:29:37 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:27:22 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ void	ft_usleep(long sleep_time)
 	start = get_time();
 	while ((get_time() - start) < sleep_time)
 		usleep(50);
+}
+
+void	ft_free(t_table *table)
+{
+	if (table->philo)
+		free(table->philo);
+	if (table->forks)
+		free(table->forks);
+	if (table)
+		free(table);
 }
