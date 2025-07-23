@@ -60,10 +60,14 @@ void	ft_locked_print(t_philo *philo, char *msg);
 long	get_time();
 void	ft_usleep(long sleep_time);
 void	ft_free(t_table *table);
+void	ft_free(t_table *table);
+void	ft_mutex_destroy(t_table *table);
 
 // thread_management;
 int		create_philo(t_table *table);
 void	*philo_routine(void *arg);
+void	ft_take_forks(t_philo *philo);
+void	ft_eat(t_philo *philo);
 
 // monitor;
 int		is_dead(t_table *table);

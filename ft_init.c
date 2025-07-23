@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/17 19:35:50 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:53:04 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ int		init_forks(t_table *table)
 
 int		init_table(t_table	*table, char **av)
 {
-	// table = malloc(sizeof(t_table));
-	// if (!table)
-	// 	return (0);
 	table->philo_nbr = ft_atol(av[1]);
 	table->time_to_die = ft_atol(av[2]);
 	table->time_to_eat = ft_atol(av[3]);

@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/17 21:27:22 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:17:53 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ void	ft_free(t_table *table)
 		free(table->forks);
 	if (table)
 		free(table);
+}
+
+void	ft_mutex_destroy(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->philo_nbr)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
+	}
 }

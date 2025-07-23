@@ -6,25 +6,25 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 21:59:28 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/17 21:33:40 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:24:47 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void		ft_eat(t_philo *philo)
+void	ft_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->table->meal_lock);
 	pthread_mutex_lock(&philo->table->counter_lock);
-	philo->last_meal = get_time();
+	pthread_mutex_lock(&philo->table->meal_lock);
 	philo->meals_counter += 1;
-	pthread_mutex_unlock(&philo->table->meal_lock);
+	philo->last_meal = get_time();
 	pthread_mutex_unlock(&philo->table->counter_lock);
+	pthread_mutex_unlock(&philo->table->meal_lock);
 	ft_locked_print(philo, "is eating");
 	ft_usleep(philo->table->time_to_eat);
 }
 
-void		ft_take_forks(t_philo *philo)
+void	ft_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	ft_locked_print(philo, "has taken a fork");
@@ -38,7 +38,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (!(philo->id % 2))
-		ft_usleep(100);
+		ft_usleep(10);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->table->meal_lock);
