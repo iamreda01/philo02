@@ -1,0 +1,67 @@
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
+
+
+// libs;
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <limits.h>
+# include <sys/time.h>
+# include <semaphore.h>
+# include <fcntl.h>
+# include <sys/stat.h> 
+
+
+typedef struct	s_table t_table;
+
+typedef struct	s_table
+{
+	int			philo_nbr; // [1];
+	long    	time_to_die; // [2];
+	long    	time_to_eat; // [3];
+	long    	time_to_sleep; // [4];
+	long    	limit_meals; // [5] optional arg
+	long		start_time;
+	sem_t		*forks;
+	sem_t		*print_lock;
+	int			*pid;
+	t_philo		*philo;
+}	t_table;
+
+
+// parsing;
+int		is_nbr(char *str);
+void	is_arg_nbr(int ac, char **av);
+void	parsing_arg(int ac, char **av);
+long	ft_atol(char *str);
+void	ft_putstr_fd(char *str, int fd);
+void	ft_print_error(char *str);
+
+// init_func;
+int		init_table(t_table	*table, char **av);
+int		init_forks(t_table *table);
+int		init_mutex(t_table	*table);
+int		init_philo(t_table *table);
+
+// helper_func;
+void	ft_locked_print(t_philo *philo, char *msg);
+long	get_time();
+void	ft_usleep(long sleep_time);
+void	ft_free(t_table *table);
+void	ft_free(t_table *table);
+void	ft_mutex_destroy(t_table *table);
+
+// thread_management;
+int		create_philo(t_table *table);
+void	*philo_routine(void *arg);
+void	ft_take_forks(t_philo *philo);
+void	ft_eat(t_philo *philo);
+
+// monitor;
+int		is_dead(t_table *table);
+int		check_meals(t_table *table);
+
+
+# endif
