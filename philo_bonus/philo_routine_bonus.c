@@ -6,16 +6,38 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 17:31:29 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/24 18:02:35 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/24 20:13:00 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	philo_routine(t_table *table)
+void	*is_dead(void *arg)
 {
+	t_table *table;
+
+	table = (t_table *)arg;
 	while (1)
 	{
+		if ((get_time() - table->last_meal) > table->time_to_die)
+		{
+			sem_wait(table->print_lock);
+			printf("%ld %d died\n", (get_time() - table->start_time), table->philo_id);
+			exit (1);
+		}
+	}	
+}
+
+void	philo_routine(t_table *table)
+{
+	pthread_t	tid;
+
+	if (pthread_create(&tid, NULL, is_dead, table))
+		ft_print_error("Error: Failed to create philosopher thread\n");
+	pthread_detach(tid);
+	while (1)
+	{
+		
 		sem_wait(table->forks);
 		
 		sem_wait(table->print_lock);

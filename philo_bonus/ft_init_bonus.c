@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/24 18:00:51 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/24 20:15:46 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	create_process(t_table *table)
 	while (i < table->philo_nbr)
 	{
 		waitpid(-1, &status, 0);
+		if (WEXITSTATUS(status) == 1)
+		{
+			i = 0;
+			while (i < table->philo_nbr)
+				kill(table->pid[i++], SIGKILL);
+		}
 		i++;
 	}
 }

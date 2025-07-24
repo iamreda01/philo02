@@ -11,6 +11,7 @@
 # include <sys/time.h>
 # include <semaphore.h>
 # include <fcntl.h>
+# include <signal.h>
 
 
 
