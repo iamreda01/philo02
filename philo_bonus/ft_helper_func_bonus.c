@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/24 15:26:53 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/24 17:45:01 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ long	get_time()
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
+// void	ft_locked_print(t_philo *philo, char *msg)
+// {
+// 	pthread_mutex_lock(&philo->table->print_lock);
+// 	printf("%ld %d %s\n", (get_time() - philo->table->start_time), philo->id, msg);
+// 	pthread_mutex_unlock(&philo->table->print_lock);	
+// }
+
 void	ft_usleep(long sleep_time)
 {
 	long	start;
@@ -29,10 +36,3 @@ void	ft_usleep(long sleep_time)
 		usleep(50);
 }
 
-void	ft_locked_print(t_table *table, int philo_id, long last_meal, char *msg)
-{
-	// check_death(table, philo_id, last_meal);
-	sem_wait(table->print_lock);
-	printf("%ld %d %s\n", (get_time() - table->start_time), philo_id, msg);
-	sem_post(table->print_lock);	
-}
