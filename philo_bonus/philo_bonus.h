@@ -11,10 +11,8 @@
 # include <sys/time.h>
 # include <semaphore.h>
 # include <fcntl.h>
-# include <sys/stat.h> 
-
-
-typedef struct	s_table t_table;
+# include <sys/wait.h> 
+# include <signal.h>
 
 typedef struct	s_table
 {
@@ -26,8 +24,7 @@ typedef struct	s_table
 	long		start_time;
 	sem_t		*forks;
 	sem_t		*print_lock;
-	int			*pid;
-	t_philo		*philo;
+	pid_t		*pid;
 }	t_table;
 
 
@@ -41,27 +38,21 @@ void	ft_print_error(char *str);
 
 // init_func;
 int		init_table(t_table	*table, char **av);
-int		init_forks(t_table *table);
-int		init_mutex(t_table	*table);
-int		init_philo(t_table *table);
+void	init_semaphores(t_table *table);
 
 // helper_func;
-void	ft_locked_print(t_philo *philo, char *msg);
+void	ft_locked_print(t_table *table, int pid, long last_meal, char *msg);
 long	get_time();
 void	ft_usleep(long sleep_time);
 void	ft_free(t_table *table);
-void	ft_free(t_table *table);
-void	ft_mutex_destroy(t_table *table);
-
-// thread_management;
-int		create_philo(t_table *table);
-void	*philo_routine(void *arg);
-void	ft_take_forks(t_philo *philo);
-void	ft_eat(t_philo *philo);
 
 // monitor;
 int		is_dead(t_table *table);
 int		check_meals(t_table *table);
+
+//process_manaegment
+void	philo_routine(t_table *table, int i);
+void	check_death(t_table *table, long last_meal, int philo_id);
 
 
 # endif
