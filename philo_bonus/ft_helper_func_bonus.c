@@ -6,13 +6,13 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/25 15:06:18 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:42:24 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-long	get_time()
+long	get_time(void)
 {
 	struct timeval	tv;
 
@@ -23,7 +23,8 @@ long	get_time()
 void	ft_locked_print(t_table *table, char *msg)
 {
 	sem_wait(table->print_lock);
-	printf("%ld %d %s\n", (get_time() - table->start_time), table->philo_id, msg);
+	printf("%ld %d %s\n", (get_time() - table->start_time),
+		table->philo_id, msg);
 	sem_post(table->print_lock);
 }
 
@@ -35,4 +36,3 @@ void	ft_usleep(long sleep_time)
 	while ((get_time() - start) < sleep_time)
 		usleep(50);
 }
-

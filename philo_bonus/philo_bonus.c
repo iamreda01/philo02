@@ -6,14 +6,13 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:35:37 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/25 15:04:33 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:44:06 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_table	*table;
 

@@ -6,16 +6,34 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/25 15:02:31 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:37:25 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	create_process(t_table *table)
+void	wait_process(t_table *table)
 {
 	int	i;
 	int	status;
+
+	i = 0;
+	while (i < table->philo_nbr)
+	{
+		waitpid(-1, &status, 0);
+		if (WEXITSTATUS(status) == 1)
+		{
+			i = 0;
+			while (i < table->philo_nbr)
+				kill(table->pid[i++], SIGKILL);
+		}
+		i++;
+	}
+}
+
+void	create_process(t_table *table)
+{
+	int	i;
 
 	i = 0;
 	table->start_time = get_time();
@@ -36,18 +54,7 @@ void	create_process(t_table *table)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < table->philo_nbr)
-	{
-		waitpid(-1, &status, 0);
-		if (WEXITSTATUS(status) == 1)
-		{
-			i = 0;
-			while (i < table->philo_nbr)
-				kill(table->pid[i++], SIGKILL);
-		}
-		i++;
-	}
+	wait_process(table);
 }
 
 void	init_sem(t_table *table)

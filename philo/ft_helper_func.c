@@ -6,13 +6,13 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 22:36:17 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/23 15:17:53 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:35:19 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_time()
+long	get_time(void)
 {
 	struct timeval	tv;
 
@@ -23,8 +23,9 @@ long	get_time()
 void	ft_locked_print(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->table->print_lock);
-	printf("%ld %d %s\n", (get_time() - philo->table->start_time), philo->id, msg);
-	pthread_mutex_unlock(&philo->table->print_lock);	
+	printf("%ld %d %s\n", (get_time() - philo->table->start_time),
+		philo->id, msg);
+	pthread_mutex_unlock(&philo->table->print_lock);
 }
 
 void	ft_usleep(long sleep_time)

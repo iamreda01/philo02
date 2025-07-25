@@ -14,7 +14,6 @@
 # include <signal.h>
 
 
-
 typedef struct	s_table
 {
 	int			philo_nbr; // [1];
@@ -51,6 +50,7 @@ void	init_sem(t_table *table);
 
 // process_management
 void	create_process(t_table *table);
+void	wait_process(t_table *table);
 void	philo_routine(t_table *table);
 
 # endif
