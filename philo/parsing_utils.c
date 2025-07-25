@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:04:25 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/11 16:49:24 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:59:04 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	ft_putstr_fd(char *str, int fd)
 void	ft_print_error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	exit(1);
 }

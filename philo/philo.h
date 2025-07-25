@@ -43,8 +43,8 @@ typedef struct	s_table
 
 // parsing;
 int		is_nbr(char *str);
-void	is_arg_nbr(int ac, char **av);
-void	parsing_arg(int ac, char **av);
+int		is_arg_nbr(int ac, char **av);
+int		parsing_arg(int ac, char **av);
 long	ft_atol(char *str);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_print_error(char *str);

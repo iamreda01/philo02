@@ -1,9 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g   #-fsanitize=address -g 
+CFLAGS = -Wall -Wextra -Werror
 PTFLAG = -pthread
 
 NAME = philo_bonus
-SRC = philo_bonus.c parsing_utils_bonus.c parsing_bonus.c ft_init_bonus.c ft_helper_func_bonus.c philo_routine_bonus.c #monitor.c
+SRC = philo_bonus.c parsing_utils_bonus.c parsing_bonus.c ft_init_bonus.c ft_helper_func_bonus.c philo_routine_bonus.c
 
 OBJ = $(SRC:.c=.o)
 

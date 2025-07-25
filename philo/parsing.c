@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:01:12 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/12 19:12:10 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 20:23:32 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_nbr(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '+')
+		i++;
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -26,7 +28,7 @@ int	is_nbr(char *str)
 	return (1);
 }
 
-void	is_arg_nbr(int ac, char **av)
+int	is_arg_nbr(int ac, char **av)
 {
 	int	i;
 
@@ -34,23 +36,28 @@ void	is_arg_nbr(int ac, char **av)
 	while (i < ac)
 	{
 		if (!is_nbr(av[i]))
-			ft_print_error("Error: Invalid argument type!\n");
+			return (ft_print_error("Error: Invalid argument type!\n"), 0);
 		i++;
 	}
+	return (1);
 }
 
-void	parsing_arg(int ac, char **av)
+int	parsing_arg(int ac, char **av)
 {
 	int	i;
 
 	if (!(ac == 5 || ac == 6))
 		ft_print_error("Error: Invalid number of arguments!\n");
-	is_arg_nbr(ac, av);
-	i = 0;
+	if (!is_arg_nbr(ac, av))
+		return (0);
+	i = 1;
 	while (i < ac)
 	{
+		if (ft_atol(av[i]) == 0)
+			return (ft_print_error("Error: Error: wrong argument!\n"), 0);
 		if (ft_atol(av[i]) > INT_MAX)
-			ft_print_error("Error: argument exceeds maximum int value!\n");
+			return (ft_print_error("Error: argument exceeds maximum int value!\n"), 0);
 		i++;
 	}
+	return (1);
 }

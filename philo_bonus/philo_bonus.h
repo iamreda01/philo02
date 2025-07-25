@@ -13,7 +13,6 @@
 # include <fcntl.h>
 # include <signal.h>
 
-
 typedef struct	s_table
 {
 	int			philo_nbr; // [1];
@@ -43,6 +42,7 @@ void	ft_print_error(char *str);
 long	get_time();
 void	ft_usleep(long sleep_time);
 void	ft_locked_print(t_table *table, char *msg);
+void	ft_free(t_table *table);
 
 // init_func;
 void	init_table(t_table	*table, char **av);
