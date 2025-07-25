@@ -29,6 +29,7 @@ typedef struct	s_table
 	pid_t		*pid;
 	sem_t		*forks;
 	sem_t		*print_lock;
+	sem_t		*meal_lock;
 }	t_table;
 
 // parsing;
@@ -42,6 +43,7 @@ void	ft_print_error(char *str);
 // helper_func;
 long	get_time();
 void	ft_usleep(long sleep_time);
+void	ft_locked_print(t_table *table, char *msg);
 
 // init_func;
 void	init_table(t_table	*table, char **av);

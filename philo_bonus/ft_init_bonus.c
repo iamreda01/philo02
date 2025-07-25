@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/24 20:15:46 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:02:31 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	create_process(t_table *table)
 		{
 			table->philo_id = i + 1;
 			table->last_meal = table->start_time;
+			table->meal_counter = 0;
 			philo_routine(table);
 		}
 		i++;
@@ -53,9 +54,12 @@ void	init_sem(t_table *table)
 {
 	sem_unlink("/forks");
 	sem_unlink("/print");
+	sem_unlink("/meal");
 	table->forks = sem_open("/forks", O_CREAT, 0644, table->philo_nbr);
 	table->print_lock = sem_open("/print", O_CREAT, 0644, 1);
-	if (table->forks == SEM_FAILED || table->print_lock == SEM_FAILED)
+	table->meal_lock = sem_open("/meal", O_CREAT, 0644, 1);
+	if (table->forks == SEM_FAILED || table->print_lock == SEM_FAILED
+		|| table->meal_lock == SEM_FAILED)
 	{
 		ft_print_error("sem_open failed!\n");
 		exit(1);
