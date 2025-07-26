@@ -12,9 +12,9 @@
 
 #include "philo.h"
 
-int		check_meals(t_table *table)
+int	check_meals(t_table *table)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < table->philo_nbr)
@@ -31,9 +31,9 @@ int		check_meals(t_table *table)
 	return (1);
 }
 
-int		is_dead(t_table *table)
+int	is_dead(t_table *table)
 {
-	int		i;
+	int	i;
 
 	while (1)
 	{
@@ -47,7 +47,7 @@ int		is_dead(t_table *table)
 			{
 				pthread_mutex_lock(&table->print_lock);
 				printf("%ld %d is dead\n", (get_time() - table->start_time),
-						table->philo[i].id);
+					table->philo[i].id);
 				return (1);
 			}
 			pthread_mutex_unlock(&table->meal_lock);

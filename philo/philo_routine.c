@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 21:59:28 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/23 15:24:47 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:36:02 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_take_forks(t_philo *philo)
 
 void	*philo_routine(void *arg)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (!(philo->id % 2))
@@ -55,22 +55,21 @@ void	*philo_routine(void *arg)
 	}
 }
 
-int		create_philo(t_table *table)
+int	create_philo(t_table *table)
 {
-	int		i;
-	pthread_t	tid[table->philo_nbr];
+	int	i;
 
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		
-		if (pthread_create(&tid[i], NULL, philo_routine, &table->philo[i]))
+		if (pthread_create(&table->philo[i].tid, NULL, philo_routine,
+				&table->philo[i]))
 		{
 			printf("Error: Failed to create philosopher thread (id: %d)\n",
 				table->philo[i].id);
 			return (0);
 		}
-		pthread_detach(tid[i]);
+		pthread_detach(table->philo[i].tid);
 		i++;
 	}
 	if (is_dead(table))

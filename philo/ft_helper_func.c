@@ -23,8 +23,8 @@ long	get_time(void)
 void	ft_locked_print(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->table->print_lock);
-	printf("%ld %d %s\n", (get_time() - philo->table->start_time),
-		philo->id, msg);
+	printf("%ld %d %s\n", (get_time() - philo->table->start_time), philo->id,
+		msg);
 	pthread_mutex_unlock(&philo->table->print_lock);
 }
 

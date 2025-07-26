@@ -6,15 +6,15 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:00:47 by rel-kass          #+#    #+#             */
-/*   Updated: 2025/07/25 16:35:41 by rel-kass         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:41:59 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		init_philo(t_table *table)
+int	init_philo(t_table *table)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	table->philo = malloc(sizeof(t_philo) * table->philo_nbr);
@@ -32,27 +32,26 @@ int		init_philo(t_table *table)
 		i++;
 	}
 	return (1);
-	
 }
 
-int		init_mutex(t_table	*table)
+int	init_mutex(t_table *table)
 {
 	if (pthread_mutex_init(&table->meal_lock, NULL)
 		|| pthread_mutex_init(&table->print_lock, NULL)
 		|| pthread_mutex_init(&table->counter_lock, NULL))
 	{
-			printf("Error: Failed to initialize mutex\n");
-			return (0);
+		printf("Error: Failed to initialize mutex\n");
+		return (0);
 	}
 	return (1);
 }
 
-int		init_forks(t_table *table)
+int	init_forks(t_table *table)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	table->forks = malloc(sizeof(mutex_t) * table->philo_nbr);
+	table->forks = malloc(sizeof(t_mutex) * table->philo_nbr);
 	if (!table->forks)
 		return (0);
 	while (i < table->philo_nbr)
@@ -67,7 +66,7 @@ int		init_forks(t_table *table)
 	return (1);
 }
 
-int		init_table(t_table	*table, char **av)
+int	init_table(t_table *table, char **av)
 {
 	table->philo_nbr = ft_atol(av[1]);
 	table->time_to_die = ft_atol(av[2]);
@@ -85,5 +84,5 @@ int		init_table(t_table	*table, char **av)
 		return (0);
 	if (!create_philo(table))
 		return (0);
-	return (1);	
+	return (1);
 }
